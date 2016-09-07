@@ -282,6 +282,7 @@ class AmqpRpcClient implements RpcClientInterface
         // A response was received ...
         $response       = $this->response;
         $this->response = null;
+        $response->setTime($elapsed);
 
         return $response;
     }
@@ -292,5 +293,9 @@ class AmqpRpcClient implements RpcClientInterface
     private $timeout;
     private $correlationId;
     private $consumerTag;
+
+    /**
+     * @var Response
+     */
     private $response;
 }
