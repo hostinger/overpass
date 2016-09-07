@@ -10,7 +10,7 @@ use Icecave\Overpass\Rpc\Exception\UnknownProcedureException;
 /**
  * Represents an RPC response.
  */
-class Response
+class Response implements \JsonSerializable
 {
     /**
      * @param ResponseCode The response code.
@@ -131,6 +131,14 @@ class Response
             $this->code,
             $value
         );
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'code' => $this->code,
+            'value' => $this->value
+        ];
     }
 
     private $code;

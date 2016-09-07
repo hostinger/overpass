@@ -4,7 +4,7 @@ namespace Icecave\Overpass\Rpc\Message;
 /**
  * Represents an RPC request.
  */
-class Request
+class Request implements \JsonSerializable
 {
     /**
      * @param string $name      The name of the procedure to call.
@@ -66,4 +66,12 @@ class Request
 
     private $name;
     private $arguments;
+
+    function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'arguments' => $this->arguments
+        ];
+    }
 }
