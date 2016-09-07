@@ -12,6 +12,24 @@ use Icecave\Overpass\Rpc\Exception\UnknownProcedureException;
  */
 class Response implements \JsonSerializable
 {
+    private $time = -1;
+
+    /**
+     * @return int
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * @param int $time
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    }
+
     /**
      * @param ResponseCode The response code.
      * @param mixed The return value or exception message.
@@ -137,7 +155,8 @@ class Response implements \JsonSerializable
     {
         return [
             'code' => $this->code,
-            'value' => $this->value
+            'message' => $this->value,
+            'time' => $this->getTime()
         ];
     }
 
