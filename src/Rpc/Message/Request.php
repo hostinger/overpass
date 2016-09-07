@@ -71,7 +71,7 @@ class Request implements \JsonSerializable
     {
         return [
             'name' => $this->name,
-            'arguments' => $this->arguments
+            'arguments' => is_string($this->arguments) ? json_decode($this->arguments) : $this->arguments
         ];
     }
 }
