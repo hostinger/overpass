@@ -155,7 +155,7 @@ class Response implements \JsonSerializable
     {
         return [
             'code' => $this->code,
-            'message' => $this->value,
+            'message' => is_string($this->value) ? json_decode($this->value) : $this->value,
             'time' => $this->getTime()
         ];
     }
