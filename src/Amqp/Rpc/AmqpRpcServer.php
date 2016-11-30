@@ -264,9 +264,9 @@ class AmqpRpcServer implements RpcServerInterface
             ->declarationManager
             ->requestQueue($procedureName);
 
+        $this->channel->basic_qos(null, 1, null);
         $this->consumerTags[$procedureName] = $this
             ->channel
-            ->basic_qos(null, 1, null)
             ->basic_consume(
                 $queue,
                 '',    // consumer tag
